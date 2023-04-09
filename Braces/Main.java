@@ -36,6 +36,7 @@ public class Main {
       char character = expression.charAt(i);
       if (isOpenBrace(character)) stack.push(character);
       if (isCloseBrace(character)) {
+        if (stack.isEmpty()) return false;
         if (doBracesMatch(stack.peek(), character)) stack.pop();
         else return false;
       }
