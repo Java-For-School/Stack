@@ -1,0 +1,40 @@
+import java.util.Stack;
+
+public class Main {
+  public static void main(String[] args) {
+    Stack<Integer> stack = new Stack<Integer>();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(2);
+    stack.push(1);
+    stack.push(2);
+
+    System.out.println(changeDirectionNumber(stack));
+  }
+  private static Stack<Integer> changeDirectionNumber(Stack<Integer> stack) {
+    Stack<Integer> newStack = new Stack<Integer>();
+    Stack<Integer> temp = new Stack<Integer>();
+    
+    int lastElement = stack.pop();
+    int currentElement = stack.peek();
+    
+    boolean direction = lastElement < currentElement;
+    
+    while (!stack.size() > 1) {
+      lastElement = stack.pop();
+      temp.push(lastElement);
+      currentElement = stack.peek();
+         
+      if ((lastElement < currentElement && direction) || (lastElement > currentElement && !direction)) {
+        newStack.push(lastElement);
+      }
+      else {
+        newStack.push(lastElement);
+        newStack.push(lastElement);
+      }
+    }
+    
+    return newStack;
+  }
+}
